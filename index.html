@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Frontend</title>
+    <title>E-Commerce Website</title>
     <link rel="stylesheet" href="styles/main.css">
+    <script defer src="scripts/app.js"></script>
 </head>
 <body>
-    <header>
+
+<header>
+    <div class="container">
+        <!-- Logo -->
         <div class="logo">
-            <img src="assets/logo.png" alt="Brand Logo"> <!-- Placeholder for logo -->
+            <img src="assets/logo.png" alt="ShopEasy Logo">
         </div>
-        <nav>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Products</a></li>
@@ -19,21 +25,29 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search products...">
-            <button type="submit">Search</button>
+
+        <!-- Search Bar & Cart -->
+        <div class="header-right">
+            <input type="text" placeholder="Search products..." class="search-bar">
+            <div class="cart-icon">
+                <img src="assets/cart-icon.png" alt="Shopping Cart">
+                <span class="cart-badge">3</span>
+            </div>
+            <div class="hamburger-menu">
+                <img src="assets/menu.png" alt="Menu">
+            </div>
         </div>
-        <div class="cart-icon">
-            <span class="badge">0</span> <!-- Notification badge for item count -->
-            <img src="assets/cart-icon.png" alt="Shopping Cart"> <!-- Placeholder for cart icon -->
-        </div>
-        <div class="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
-    <h1>Welcome to Our Online Store</h1>
-    <script src="scripts/app.js"></script>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Biggest Sale of the Year!</h1>
+        <p>Get up to 50% off on top brands. Limited time offer.</p>
+        <a href="#" class="cta-button">Shop Now</a>
+    </div>
+</section>
+
 </body>
 </html>

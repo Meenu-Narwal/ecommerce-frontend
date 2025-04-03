@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const navMenu = document.querySelector('nav ul');
+document.addEventListener("DOMContentLoaded", () => {
+    const menuIcon = document.querySelector(".hamburger-menu img");
+    const navMenu = document.querySelector(".nav-menu");
 
-    hamburgerMenu.addEventListener('click', () => {
-        navMenu.classList.toggle('active'); // Toggle the active class
+    menuIcon.addEventListener("click", () => {
+        navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
     });
 });
