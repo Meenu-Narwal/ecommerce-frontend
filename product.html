@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header>
+        <div class="logo">
+            <img src="assets/logo.png" alt="Brand Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-container">
+            <img src="assets/cart-icon.png" id="cart-icon" alt="Cart">
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- PRODUCT DETAILS SECTION -->
+    <section class="product-details">
+        <div class="product-gallery">
+            <div class="main-image-container">
+                <img id="product-image" src="" alt="Product Image" class="main-image">
+                <div id="zoom-lens"></div>
+                <div id="zoom-result"></div>
+            </div>
+        </div>
+        
+        <div class="product-info">
+            <h1 id="product-title"></h1>
+            <p id="product-description"></p>
+            <div class="price-container">
+                <span id="product-price"></span>
+                <span id="total-price"></span>
+            </div>
+
+            <!-- Product Variations -->
+            <div class="variations">
+                <div class="size-selector">
+                    <label>Size:</label>
+                    <select id="size">
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                    </select>
+                </div>
+                <div class="color-selector">
+                    <label>Color:</label>
+                    <div class="color-options">
+                        <div class="color-option" data-color="red" style="background-color: red;"></div>
+                        <div class="color-option" data-color="blue" style="background-color: blue;"></div>
+                        <div class="color-option" data-color="green" style="background-color: green;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity Selector -->
+            <div class="quantity-selector">
+                <button id="decrease">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="10">
+                <button id="increase">+</button>
+            </div>
+
+            <!-- Add to Cart -->
+            <button id="add-to-cart" class="add-to-cart-btn">Add to Cart</button>
+            <div id="cart-feedback" class="cart-feedback"></div>
+        </div>
+    </section>
+
+    <script src="scripts/product.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

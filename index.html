@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Frontend</title>
+    <title>E-Commerce Store</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
@@ -16,12 +16,13 @@
 
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        
 
         <!-- Search Bar -->
         <div class="search-bar">
@@ -56,8 +57,10 @@
         <div id="products-container" class="product-grid">
             <!-- Products will be dynamically loaded here -->
         </div>
+
+</section>
+
     </section>
-    
 
     <!-- CART MODAL -->
     <div class="cart-modal" id="cart-modal">
@@ -67,5 +70,6 @@
     </div>
 
     <script src="scripts/app.js"></script>
+    <script src="scripts/product.js"></script>
 </body>
 </html>
