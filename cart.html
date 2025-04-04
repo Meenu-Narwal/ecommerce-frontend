@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - ECommerce Frontend</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/logo.png" alt="Store Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li class="active"><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon-container">
+            <a href="cart.html">
+                <img src="assets/cart-icon.png" alt="Cart" id="header-cart-icon">
+                <span id="header-cart-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="cart-container">
+        <h1>Your Shopping Cart</h1>
+        
+        <div class="cart-actions">
+            <a href="product.html" class="continue-shopping">← Continue Shopping</a>
+        </div>
+
+        <div class="cart-items-container" id="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+            <div class="empty-cart-message">
+                <p>Your cart is empty</p>
+                <a href="product.html" class="btn">Browse Products</a>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <div class="cart-totals">
+                <h3>Order Summary</h3>
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span id="cart-shipping">Free</span>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+            <button id="checkout-btn" class="checkout-btn" disabled>Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ECommerce Store. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/cart.js"></script>
+</body>
+</html>
