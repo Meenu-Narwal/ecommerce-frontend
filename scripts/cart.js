@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartSubtotal = document.getElementById("cart-subtotal");
     const cartTotal = document.getElementById("cart-total");
     const checkoutBtn = document.getElementById("checkout-btn");
-    const headerCartCount = document.getElementById("header-cart-count");
+    const headerCartCount = document.getElementById("cart-count");
 
     // Load cart from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -112,7 +112,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Checkout button handler
     checkoutBtn.addEventListener('click', () => {
-        // In a real implementation, this would redirect to checkout
-        alert('Proceeding to checkout!');
+        if (cart.length === 0) return;
+        
+        // Show checkout form overlay
+        const checkoutOverlay = document.createElement('div');
+        checkoutOverlay.className = 'checkout-overlay';
+        checkoutOverlay.innerHTML = `
+            <div class="checkout-modal">
+                <h2>Checkout</h2>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <textarea id="address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">Payment Method</label>
+                        <select id="payment" required>
+                            <option value="">Select payment</option>
+                            <option value="credit">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-checkout">Cancel</button>
+                        <button type="submit" class="submit-order">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(checkoutOverlay);
+
+        // Handle form submission
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            processOrder();
+        });
+
+        // Handle cancel
+        document.querySelector('.cancel-checkout').addEventListener('click', () => {
+            document.body.removeChild(checkoutOverlay);
+        });
     });
+
+    function processOrder() {
+        // In a real implementation, you would:
+        // 1. Validate form data
+        // 2. Send order to server
+        // 3. Handle response
+        // 4. Clear cart on success
+        
+        // For demo purposes:
+        alert('Order placed successfully!');
+        cart = [];
+        localStorage.removeItem('cart');
+        displayCartItems();
+        document.body.removeChild(document.querySelector('.checkout-overlay'));
+    }
 });

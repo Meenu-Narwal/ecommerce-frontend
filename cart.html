@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart - ECommerce Frontend</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
+<body class="cart-page">
     <header>
         <div class="logo">
             <img src="assets/logo.png" alt="Store Logo">
@@ -18,10 +19,10 @@
                 <li class="active"><a href="cart.html">Cart</a></li>
             </ul>
         </nav>
-        <div class="cart-icon-container">
+        <div class="cart-container">
             <a href="cart.html">
-                <img src="assets/cart-icon.png" alt="Cart" id="header-cart-icon">
-                <span id="header-cart-count">0</span>
+                <img src="assets/cart-icon.png" alt="Cart">
+                <span id="cart-count">0</span>
             </a>
         </div>
     </header>
@@ -30,14 +31,14 @@
         <h1>Your Shopping Cart</h1>
         
         <div class="cart-actions">
-            <a href="product.html" class="continue-shopping">← Continue Shopping</a>
+            <a href="index.html" class="continue-shopping">← Continue Shopping</a>
         </div>
 
         <div class="cart-items-container" id="cart-items">
             <!-- Cart items will be dynamically inserted here -->
             <div class="empty-cart-message">
                 <p>Your cart is empty</p>
-                <a href="product.html" class="btn">Browse Products</a>
+                <a href="index.html" class="btn">Browse Products</a>
             </div>
         </div>
 
@@ -57,7 +58,7 @@
                     <span id="cart-total">$0.00</span>
                 </div>
             </div>
-            <button id="checkout-btn" class="checkout-btn" disabled>Proceed to Checkout</button>
+            <button id="checkout-btn" class="proceed-checkout-btn" disabled>Proceed to Checkout</button>
         </div>
     </main>
 
