@@ -191,4 +191,261 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetchProducts();
 });
+// Auth Form Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Form toggle functionality
+    const loginToggle = document.getElementById('login-toggle');
+    const signupToggle = document.getElementById('signup-toggle');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const toSignup = document.getElementById('to-signup');
+    const toLogin = document.getElementById('to-login');
 
+    function toggleForms(showLogin) {
+        if (showLogin) {
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+            loginToggle.classList.add('active');
+            signupToggle.classList.remove('active');
+        } else {
+            loginForm.classList.remove('active');
+            signupForm.classList.add('active');
+            loginToggle.classList.remove('active');
+            signupToggle.classList.add('active');
+        }
+    }
+
+    loginToggle.addEventListener('click', () => toggleForms(true));
+    signupToggle.addEventListener('click', () => toggleForms(false));
+    toSignup.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleForms(false);
+    });
+    toLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleForms(true);
+    });
+
+    // Password visibility toggle
+    document.querySelectorAll('.toggle-password').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+        });
+    });
+
+    // Password strength indicator
+    const passwordInput = document.getElementById('signup-password');
+    const strengthBar = document.querySelector('.strength-bar');
+    const strengthText = document.querySelector('.strength-text');
+
+    passwordInput.addEventListener('input', function() {
+        const strength = calculatePasswordStrength(this.value);
+        updateStrengthIndicator(strength);
+    });
+
+    function calculatePasswordStrength(password) {
+        let strength = 0;
+        if (password.length > 7) strength++;
+        if (password.match(/[A-Z]/)) strength++;
+        if (password.match(/[0-9]/)) strength++;
+        if (password.match(/[^A-Za-z0-9]/)) strength++;
+        return strength;
+    }
+
+    function updateStrengthIndicator(strength) {
+        const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71'];
+        const texts = ['Weak', 'Fair', 'Good', 'Strong'];
+        strengthBar.style.width = `${strength * 25}%`;
+        strengthBar.style.backgroundColor = colors[strength - 1] || colors[0];
+        strengthText.textContent = texts[strength - 1] || texts[0];
+    }
+
+    // Form submission with backend integration
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!validateLoginForm()) return;
+        
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Logging in...';
+            
+            // Mock successful login for testing
+            const mockUser = {
+                id: 1,
+                name: 'Test User',
+                email: document.getElementById('login-email').value
+            };
+            
+            // Simulate API response
+            const data = {
+                token: 'mock-token',
+                user: mockUser
+            };
+            
+            console.log('Mock login successful', data);
+
+            // Store token and user data
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // Redirect to home page after login
+            window.location.href = 'index.html';
+            
+        } catch (error) {
+            showFormError(form, error.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
+    });
+
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!validateSignupForm()) return;
+        
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating account...';
+            
+            // Mock successful signup for testing
+            const mockUser = {
+                id: 2,
+                name: document.getElementById('signup-name').value,
+                email: document.getElementById('signup-email').value
+            };
+            
+            // Simulate API response
+            const data = {
+                token: 'mock-token',
+                user: mockUser
+            };
+            
+            console.log('Mock signup successful', data);
+
+            // Store token and user data
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // Redirect to home page after signup
+            window.location.href = 'index.html';
+            
+        } catch (error) {
+            showFormError(form, error.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
+    });
+
+    /**
+     * Displays an error message in the form
+     * @param {HTMLFormElement} form - The form element
+     * @param {string} message - The error message to display
+     */
+    function showFormError(form, message) {
+        const errorContainer = form.querySelector('.form-error') || createErrorContainer(form);
+        errorContainer.textContent = message;
+        errorContainer.style.display = 'block';
+        errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /**
+     * Creates a styled error container for form validation messages
+     * @param {HTMLFormElement} form - The form element
+     * @returns {HTMLDivElement} The created error container
+     */
+    function createErrorContainer(form) {
+        const container = document.createElement('div');
+        container.className = 'form-error';
+        Object.assign(container.style, {
+            color: '#e74c3c',
+            margin: '1rem 0',
+            padding: '0.5rem',
+            backgroundColor: '#fdecea',
+            borderRadius: '4px',
+            display: 'none'
+        });
+        form.insertBefore(container, form.firstChild);
+        return container;
+    }
+
+    function validateLoginForm() {
+        const email = document.getElementById('login-email');
+        const password = document.getElementById('login-password');
+        let isValid = true;
+
+        // Email validation
+        if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+            email.nextElementSibling.textContent = 'Please enter a valid email';
+            isValid = false;
+        } else {
+            email.nextElementSibling.textContent = '';
+        }
+
+        // Password validation
+        if (!password.value) {
+            password.nextElementSibling.textContent = 'Please enter your password';
+            isValid = false;
+        } else {
+            password.nextElementSibling.textContent = '';
+        }
+
+        return isValid;
+    }
+
+    function validateSignupForm() {
+        const name = document.getElementById('signup-name');
+        const email = document.getElementById('signup-email');
+        const password = document.getElementById('signup-password');
+        const confirm = document.getElementById('signup-confirm');
+        let isValid = true;
+
+        // Name validation
+        if (!name.value) {
+            name.nextElementSibling.textContent = 'Please enter your full name';
+            isValid = false;
+        } else {
+            name.nextElementSibling.textContent = '';
+        }
+
+        // Email validation
+        if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+            email.nextElementSibling.textContent = 'Please enter a valid email';
+            isValid = false;
+        } else {
+            email.nextElementSibling.textContent = '';
+        }
+
+        // Password validation
+        if (!password.value || password.value.length < 8) {
+            password.nextElementSibling.textContent = 'Password must be at least 8 characters';
+            isValid = false;
+        } else if (!password.value.match(/[A-Z]/) || !password.value.match(/[0-9]/)) {
+            password.nextElementSibling.textContent = 'Password must contain at least one uppercase letter and one number';
+            isValid = false;
+        } else {
+            password.nextElementSibling.textContent = '';
+        }
+
+        // Confirm password validation
+        if (password.value !== confirm.value) {
+            confirm.nextElementSibling.textContent = 'Passwords do not match';
+            isValid = false;
+        } else {
+            confirm.nextElementSibling.textContent = '';
+        }
+
+        return isValid;
+    }
+});

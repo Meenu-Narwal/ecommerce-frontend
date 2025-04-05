@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-toggle">
+            <button class="toggle-btn active" id="login-toggle">Login</button>
+            <button class="toggle-btn" id="signup-toggle">Sign Up</button>
+        </div>
+
+        <form id="login-form" class="auth-form active">
+            <h2>Welcome Back</h2>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="login-password" required>
+                    <span class="toggle-password">👁️</span>
+                </div>
+                <span class="error-message"></span>
+            </div>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+            <button type="submit" class="auth-btn">Login</button>
+            <p class="switch-form">Don't have an account? <a href="#" id="to-signup">Sign Up</a></p>
+        </form>
+
+        <form id="signup-form" class="auth-form">
+            <h2>Create Account</h2>
+            <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" required>
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" required>
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="signup-password" required>
+                    <span class="toggle-password">👁️</span>
+                </div>
+                <div class="password-strength">
+                    <span class="strength-bar"></span>
+                    <span class="strength-text">Weak</span>
+                </div>
+                <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm">Confirm Password</label>
+                <input type="password" id="signup-confirm" required>
+                <span class="error-message"></span>
+            </div>
+            <button type="submit" class="auth-btn">Sign Up</button>
+            <p class="switch-form">Already have an account? <a href="#" id="to-login">Login</a></p>
+        </form>
+    </div>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

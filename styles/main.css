@@ -692,3 +692,168 @@ nav ul li a {
     font-size: 1.1rem;
   }
 }
+/* Auth Forms */
+.auth-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.auth-toggle {
+  display: flex;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.toggle-btn.active {
+  color: #0066cc;
+  border-bottom: 2px solid #0066cc;
+}
+
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-strength {
+  margin-top: 0.5rem;
+}
+
+.strength-bar {
+  display: inline-block;
+  height: 4px;
+  width: 100px;
+  background: #eee;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.auth-btn:hover {
+  background: #0052a3;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin: 0.5rem 0 1.5rem;
+  color: #666;
+  text-decoration: none;
+}
+
+.switch-form {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.switch-form a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .auth-container {
+      margin: 1rem;
+      padding: 1.5rem;
+  }
+}
+/* Auth Link */
+.auth-link {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.auth-link a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.auth-link a:hover {
+  background-color: #f0f0f0;
+  color: #0066cc;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .auth-link {
+      margin-right: 10px;
+  }
+  .auth-link a {
+      padding: 6px 8px;
+      font-size: 0.9rem;
+  }
+}
